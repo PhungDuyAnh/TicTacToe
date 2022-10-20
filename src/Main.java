@@ -9,6 +9,7 @@ public class Main {
     static ArrayList<Integer> cpuPos = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException {
+
         //TicTacToe Java Game:
         String[][] broadGame = {{" "," ", "|"," "," "," ", "|"," ", " "},
         {"--", "+","---", "+", "--"},
@@ -16,22 +17,27 @@ public class Main {
         {"--", "+","---", "+", "--"},
         {" "," ", "|"," "," "," ", "|"," ", " "}};
 
-        printGameBroad(broadGame);
-        System.out.println("Select mode :");
-        System.out.println("Press 1 :Player vs Player!");
-        System.out.println("Press 2 :Player vs CPU!");
-        int mode = scanner.nextInt();
-        switch (mode){
-            case 1:
-                PlayervsPlayer(broadGame);
-                break;
-            case 2:
-                PlayervsCPU(broadGame);
-                break;
-            default:
-                System.out.println("Only 2 mode");
-                return;
+
+        while (true){
+            printGameBroad(broadGame);
+            System.out.println();
+            System.out.println("Select mode :");
+            System.out.println("Press 1 :Player vs Player!");
+            System.out.println("Press 2 :Player vs CPU!");
+            int mode = scanner.nextInt();
+            switch (mode){
+                case 1:
+                    PlayervsPlayer(broadGame);
+                    break;
+                case 2:
+                    PlayervsCPU(broadGame);
+                    break;
+                default:
+                    System.out.println("Only 2 mode");
+                    continue;
+            }
         }
+
 
 
 
@@ -94,9 +100,15 @@ public class Main {
 
 
             //CPU turn:
+            System.out.println("CPU is thinking.");
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("CPU is thinking..");
+            TimeUnit.SECONDS.sleep(1);
             System.out.println("CPU is thinking...");
+            TimeUnit.SECONDS.sleep(1);
             Random random = new Random();
-            TimeUnit.SECONDS.sleep(2);
+            int timeCpuThink = random.nextInt(2)+1;
+            TimeUnit.SECONDS.sleep(timeCpuThink);
             int positionCPU = random.nextInt(9) + 1;
             while(cpuPos.contains(positionCPU) || playerPos.contains(positionCPU)){
                 positionCPU = random.nextInt(9) + 1;
@@ -112,6 +124,7 @@ public class Main {
 
 
     public static void printGameBroad(String[][] broadGame){
+        System.out.println("TIC TAC TOE GAME !");
         for(String[] row : broadGame){
             for(String c : row){
                 System.out.print(c);
@@ -207,13 +220,11 @@ public class Main {
                 return "CPU won";
             }else if (player2Pos.containsAll(l) || player2Pos.size() + playerPos.size() == 9  && player2Pos.containsAll(l)){
                 return "Player2 won";
-            }else {
-                if(playerPos.size() + cpuPos.size() == 9 || playerPos.size() + player2Pos.size() == 9){
-                    return "Full broad";
-                }
             }
-
 //            215346978
+        }
+        if(playerPos.size() + cpuPos.size() == 9 || playerPos.size() + player2Pos.size() == 9){
+            return "Full broad";
         }
         return "";
 
