@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -7,6 +8,7 @@ public class Main {
     static ArrayList<Integer> playerPos = new ArrayList<>();
     static ArrayList<Integer> player2Pos = new ArrayList<>();
     static ArrayList<Integer> cpuPos = new ArrayList<>();
+    static ArrayList<Integer> listPosition = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -28,11 +30,6 @@ public class Main {
             selectMode(broadGame);
 
         }
-
-
-
-
-
 
 
     }
@@ -154,7 +151,6 @@ public class Main {
 
 
     public static void inputPosition(String[][] broadGame,String player,int position){
-
         String sign = "";
 
         if(player == "player1"){
@@ -168,40 +164,79 @@ public class Main {
             cpuPos.add(position);
         }
 
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(sign);
+
+        //show what position taken:
+        listPosition.add(position);
+        System.out.println(listPosition);
+
+        for(int i = 0;i<listPosition.size();i++){
+            int pos = listPosition.get(i);
+            if(pos==1){
+                broadGame[0][0] = broadGame[0][0].replace("*","");
+            }else if(pos==2){
+                broadGame[0][4] = broadGame[0][4].replace("*","");
+            }
+            else if(pos==3){
+                broadGame[0][8] = broadGame[0][8].replace("*","");
+            }
+            else if(pos==4){
+                broadGame[2][0] = broadGame[2][0].replace("*","");
+            }
+            else if(pos==5){
+                broadGame[2][4] = broadGame[2][4].replace("*","");
+            }
+            else if(pos==6){
+                broadGame[2][8] = broadGame[2][8].replace("*","");
+            }
+            else if(pos==7){
+                broadGame[4][0] = broadGame[4][0].replace("*","");
+            }
+            else if(pos==8){
+                broadGame[4][4] = broadGame[4][4].replace("*","");
+            }
+            else if(pos==9){
+                broadGame[4][8] = broadGame[4][8].replace("*","");
+            }
+        }
+
 
         switch (position){
             case 1:
-                broadGame[0][0] = sign;
+                broadGame[0][0] = buffer.toString()+"*";
                 break;
             case 2:
-                broadGame[0][4] = sign;
+                broadGame[0][4] = buffer.toString()+"*";
                 break;
             case 3:
-                broadGame[0][8] = sign;
+                broadGame[0][8] = buffer.toString()+"*";
                 break;
             case 4:
-                broadGame[2][0] = sign;
+                broadGame[2][0] = buffer.toString()+"*";
                 break;
             case 5:
-                broadGame[2][4] = sign;
+                broadGame[2][4] = buffer.toString()+"*";
                 break;
             case 6:
-                broadGame[2][8] = sign;
+                broadGame[2][8] = buffer.toString()+"*";
                 break;
             case 7:
-                broadGame[4][0] = sign;
+                broadGame[4][0] = buffer.toString()+"*";
                 break;
             case 8:
-                broadGame[4][4] = sign;
+                broadGame[4][4] = buffer.toString()+"*";
                 break;
             case 9:
-                broadGame[4][8] = sign;
+                broadGame[4][8] = buffer.toString()+"*";
                 break;
             default:
                 if(position<1 || position >9){
                     System.out.println("Wrong input");
                 }
-        }
+            }
+
+
 
         printGameBroad(broadGame);
     }
