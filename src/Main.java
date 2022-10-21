@@ -295,5 +295,26 @@ public class Main {
         broadGame[4][0] = " ";
         broadGame[4][4] = " ";
         broadGame[4][8] = " ";
+
+        int row = 0;
+        int row2 = 2;
+        int row3 = 4;
+        int col = 0;
+        int col2 = 0;
+        int col3 = 0;
+        for(int i = 1;i<=3;i++){
+            broadGame[row][col] = " ";
+            col+=4;
+        }
+        for(int i = 1;i<=3;i++){
+            broadGame[row2][col2] = " ";
+            col+=4;
+        }
+        for(int i = 1;i<=3;i++){
+            broadGame[row3][col3] = " ";
+            col+=4;
+        }
+
+
     }
 }
