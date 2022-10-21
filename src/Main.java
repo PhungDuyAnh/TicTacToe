@@ -19,23 +19,14 @@ public class Main {
 
 
         while (true){
+            removePosition();
+
+            clearBroadGame(broadGame);
+
             printGameBroad(broadGame);
-            System.out.println();
-            System.out.println("Select mode :");
-            System.out.println("Press 1 :Player vs Player!");
-            System.out.println("Press 2 :Player vs CPU!");
-            int mode = scanner.nextInt();
-            switch (mode){
-                case 1:
-                    PlayervsPlayer(broadGame);
-                    break;
-                case 2:
-                    PlayervsCPU(broadGame);
-                    break;
-                default:
-                    System.out.println("Only 2 mode");
-                    continue;
-            }
+
+            selectMode(broadGame);
+
         }
 
 
@@ -44,6 +35,34 @@ public class Main {
 
 
 
+    }
+
+
+    public static void removePosition(){
+        //delete all pos pev round:
+        player2Pos.removeAll(player2Pos);
+        playerPos.removeAll(playerPos);
+        cpuPos.removeAll(cpuPos);
+    }
+
+
+    public static void selectMode(String[][] broadGame) throws InterruptedException {
+        System.out.println();
+        System.out.println("Select mode :");
+        System.out.println("Press 1 :Player vs Player!");
+        System.out.println("Press 2 :Player vs CPU!");
+        int mode = scanner.nextInt();
+        switch (mode){
+            case 1:
+                PlayervsPlayer(broadGame);
+                break;
+            case 2:
+                PlayervsCPU(broadGame);
+                break;
+            default:
+                System.out.println("Only 2 mode");
+                break;
+        }
     }
 
 
@@ -229,5 +248,17 @@ public class Main {
         return "";
 
 
+    }
+
+    public static void clearBroadGame(String[][] broadGame){
+        broadGame[0][0] = " ";
+        broadGame[0][4] = " ";
+        broadGame[0][8] = " ";
+        broadGame[2][0] = " ";
+        broadGame[2][4] = " ";
+        broadGame[2][8] = " ";
+        broadGame[4][0] = " ";
+        broadGame[4][4] = " ";
+        broadGame[4][8] = " ";
     }
 }
